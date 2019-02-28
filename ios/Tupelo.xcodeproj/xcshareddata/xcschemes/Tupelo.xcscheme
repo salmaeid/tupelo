@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "tupelo.app"
-               BlueprintName = "tupelo"
-               ReferencedContainer = "container:tupelo.xcodeproj">
+               BuildableName = "Tupelo.app"
+               BlueprintName = "Tupelo"
+               ReferencedContainer = "container:Tupelo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "tupeloTests.xctest"
-               BlueprintName = "tupeloTests"
-               ReferencedContainer = "container:tupelo.xcodeproj">
+               BuildableName = "TupeloTests.xctest"
+               BlueprintName = "TupeloTests"
+               ReferencedContainer = "container:Tupelo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "tupeloTests.xctest"
-               BlueprintName = "tupeloTests"
-               ReferencedContainer = "container:tupelo.xcodeproj">
+               BuildableName = "TupeloTests.xctest"
+               BlueprintName = "TupeloTests"
+               ReferencedContainer = "container:Tupelo.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "tupelo.app"
-            BlueprintName = "tupelo"
-            ReferencedContainer = "container:tupelo.xcodeproj">
+            BuildableName = "Tupelo.app"
+            BlueprintName = "Tupelo"
+            ReferencedContainer = "container:Tupelo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "tupelo.app"
-            BlueprintName = "tupelo"
-            ReferencedContainer = "container:tupelo.xcodeproj">
+            BuildableName = "Tupelo.app"
+            BlueprintName = "Tupelo"
+            ReferencedContainer = "container:Tupelo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +113,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "tupelo.app"
-            BlueprintName = "tupelo"
-            ReferencedContainer = "container:tupelo.xcodeproj">
+            BuildableName = "Tupelo.app"
+            BlueprintName = "Tupelo"
+            ReferencedContainer = "container:Tupelo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
