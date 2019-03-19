@@ -1,22 +1,28 @@
 import React from "react";
-import {
-  ActivityIndicator,
-  TextInput,
-  StyleSheet,
-  Button,
-  View
-} from "react-native";
+import { StyleSheet, Image } from 'react-native';
+import { Container, Content, Button, Text } from 'native-base';
 
 import Colors from "../constants/Colors";
 
 export default class SignInScreen extends React.Component {
+  static navigationOptions = {
+    header: null
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <TextInput/>
-        <Button title="Sign In" onPress={this._signInAsync} />
-        <Button title="Create A New Account" />
-      </View>
+      <Container style={styles.container}>
+        <Content padder contentContainerStyle={{ paddingTop: 30, flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Image source={{ uri: 'https://facebook.github.io/react/logo-og.png' }}
+            style={{ width: 200, height: 200 }} />
+          <Button block onPress={this._signInAsync} style={{marginVertical: 10}}>
+            <Text>Sign In</Text>
+          </Button>
+          <Button block transparent>
+            <Text>Create A New Account</Text>
+          </Button>
+        </Content>
+      </Container>
     );
   }
 
@@ -27,9 +33,7 @@ export default class SignInScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      backgroundColor: Colors.screenBgColor
-    }
-  })
+  container: {
+    backgroundColor: Colors.screenBgColor
+  }
+})
