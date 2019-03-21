@@ -1,6 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
-import { Container, Content } from "native-base";
+import { StyleSheet, View } from "react-native";
 
 import Colors from "../constants/Colors";
 
@@ -16,18 +15,8 @@ export default class AuthSignInScreen extends React.Component {
   };
 
   render() {
-    return (
-      <Container style={styles.container}>
-        <Content
-          padder
-          contentContainerStyle={{
-            paddingTop: 30,
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center"
-          }}
-        />
-      </Container>
-    );
+    const { navigation } = this.props;
+
+    return <View />;
   }
 }
