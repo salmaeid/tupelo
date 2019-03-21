@@ -4,6 +4,14 @@ import { ExpoLinksView } from "@expo/samples";
 
 import Colors from "../constants/Colors";
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 15,
+    backgroundColor: Colors.screenBgColor
+  }
+});
+
 export default class MyBooksScreen extends React.Component {
   static navigationOptions = {
     title: "My Books"
@@ -19,11 +27,3 @@ export default class MyBooksScreen extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: Colors.screenBgColor
-  }
-});

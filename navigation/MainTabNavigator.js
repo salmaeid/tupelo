@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Platform } from "react-native";
 import {
   createStackNavigator,
@@ -17,74 +18,100 @@ const HomeStack = createStackNavigator({
   Home: HomeScreen
 });
 
+const HomeIcon = ({ tintColor }) => (
+  <TabBarIcon
+    tintColor={tintColor}
+    name={Platform.OS === "ios" ? `ios-search"}` : "md-search"}
+  />
+);
+
+HomeIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired
+};
+
 HomeStack.navigationOptions = {
   tabBarLabel: "Explore",
-  tabBarIcon: ({ focused, horizontal, tintColor }) => (
-    <TabBarIcon
-      tintColor={tintColor}
-      name={
-        Platform.OS === "ios"
-          ? `ios-search"}`
-          : "md-search"
-      }
-    />
-  )
+  tabBarIcon: HomeIcon
 };
 
 const MyBooksStack = createStackNavigator({
   Links: MyBooksScreen
 });
 
+const MyBooksIcon = ({ tintColor }) => (
+  <TabBarIcon
+    tintColor={tintColor}
+    name={Platform.OS === "ios" ? "ios-book" : "md-book"}
+  />
+);
+
+MyBooksIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired
+};
+
 MyBooksStack.navigationOptions = {
   tabBarLabel: "My Books",
-  tabBarIcon: ({ focused, horizontal, tintColor }) => (
-    <TabBarIcon
-      tintColor={tintColor}
-      name={Platform.OS === "ios" ? "ios-book" : "md-book"}
-    />
-  )
+  tabBarIcon: MyBooksIcon
 };
 
 const MyWishlistStack = createStackNavigator({
   Links: MyWishlistScreen
 });
 
+const MyWishlistIcon = ({ tintColor }) => (
+  <TabBarIcon
+    tintColor={tintColor}
+    name={Platform.OS === "ios" ? "ios-heart" : "md-heart"}
+  />
+);
+
+MyWishlistIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired
+};
+
 MyWishlistStack.navigationOptions = {
   tabBarLabel: "My Wishlist",
-  tabBarIcon: ({ focused, horizontal, tintColor }) => (
-    <TabBarIcon
-      tintColor={tintColor}
-      name={Platform.OS === "ios" ? "ios-heart" : "md-heart"}
-    />
-  )
+  tabBarIcon: MyWishlistIcon
 };
 
 const ChatStack = createStackNavigator({
   Links: ChatScreen
 });
 
+const ChatIcon = ({ tintColor }) => (
+  <TabBarIcon
+    tintColor={tintColor}
+    name={Platform.OS === "ios" ? "ios-mail" : "md-mail"}
+  />
+);
+
+ChatIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired
+};
+
 ChatStack.navigationOptions = {
   tabBarLabel: "Chat",
-  tabBarIcon: ({ focused, horizontal, tintColor }) => (
-    <TabBarIcon
-      tintColor={tintColor}
-      name={Platform.OS === "ios" ? "ios-mail" : "md-mail"}
-    />
-  )
+  tabBarIcon: ChatIcon
 };
 
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen
 });
 
+const SettingsIcon = ({ tintColor }) => (
+  <TabBarIcon
+    tintColor={tintColor}
+    name={Platform.OS === "ios" ? "ios-options" : "md-options"}
+  />
+);
+
+SettingsIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired
+};
+
 SettingsStack.navigationOptions = {
   tabBarLabel: "Settings",
-  tabBarIcon: ({ focused, horizontal, tintColor }) => (
-    <TabBarIcon
-      tintColor={tintColor}
-      name={Platform.OS === "ios" ? "ios-options" : "md-options"}
-    />
-  )
+  tabBarIcon: SettingsIcon
 };
 
 export default createBottomTabNavigator(

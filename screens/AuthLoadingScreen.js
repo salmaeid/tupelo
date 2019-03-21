@@ -1,27 +1,36 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 import {
   ActivityIndicator,
   AsyncStorage,
-  StatusBar,
   StyleSheet,
-  View,
-} from 'react-native';
+  View
+} from "react-native";
 
 import Colors from "../constants/Colors";
 
-export default class AuthLoadingScreen extends React.Component {
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: Colors.screenBgColor
+  }
+});
+
+class AuthLoadingScreen extends React.Component {
   constructor(props) {
     super(props);
-    this._bootstrapAsync();
+    this.bootstrapAsync();
   }
 
   // Fetch the token from storage then navigate to our appropriate place
-  _bootstrapAsync = async () => {
-    const userToken = await AsyncStorage.getItem('userToken');
+  bootstrapAsync = async () => {
+    const { navigation } = this.props;
+    const userToken = await AsyncStorage.getItem("userToken");
 
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
-    this.props.navigation.navigate(userToken ? 'Main' : 'Auth');
+    navigation.navigate(userToken ? "Main" : "Auth");
   };
 
   render() {
@@ -33,10 +42,10 @@ export default class AuthLoadingScreen extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      backgroundColor: Colors.screenBgColor
-    }
-  })
+AuthLoadingScreen.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired
+  }).isRequired
+};
+
+export default AuthLoadingScreen;
