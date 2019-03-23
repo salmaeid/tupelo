@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 2140,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
   "expoServerNgrokUrl": "https://wq-pj5.anonymous.tupelo.exp.direct",
   "packagerNgrokUrl": "https://packager.wq-pj5.anonymous.tupelo.exp.direct",
-  "ngrokPid": 4508,
+  "ngrokPid": 16024,
   "webpackServerPort": null
 }

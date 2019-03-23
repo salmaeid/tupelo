@@ -7,6 +7,7 @@ import {
   View
 } from "react-native";
 
+import Api from "../util/api";
 import Colors from "../constants/Colors";
 
 const styles = StyleSheet.create({
@@ -28,9 +29,12 @@ class AuthLoadingScreen extends React.Component {
     const { navigation } = this.props;
     const userToken = await AsyncStorage.getItem("userToken");
 
-    // This will switch to the App screen or Auth screen and this loading
-    // screen will be unmounted and thrown away.
-    navigation.navigate(userToken ? "Main" : "Auth");
+    if (userToken) {
+      Api.defaults.headers.common.Authorization = `Bearer ${userToken}`;
+      navigation.navigate("Main");
+    } else {
+      navigation.navigate("Auth");
+    }
   };
 
   render() {
