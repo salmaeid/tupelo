@@ -30,7 +30,7 @@ class AuthLoadingScreen extends React.Component {
     const userToken = await AsyncStorage.getItem("userToken");
 
     if (userToken) {
-      Api.defaults.headers.common.Authorization = `Bearer ${userToken}`;
+      Api.setUserToken(userToken);
       navigation.navigate("Main");
     } else {
       navigation.navigate("Auth");

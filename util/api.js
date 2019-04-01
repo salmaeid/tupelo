@@ -1,7 +1,38 @@
-import axios from "axios";
 import { Constants } from "expo";
 
-export default axios.create({
-  baseURL: Constants.manifest.extra.apiUrl,
-  responseType: "json"
-});
+import timeoutPromise from "./timeout-promise";
+
+class Api {
+  constructor(baseUrl, timeout) {
+    this.baseUrl = baseUrl;
+    this.timeout = timeout;
+    this.userToken = null;
+  }
+
+  setUserToken(userToken) {
+    this.userToken = userToken;
+  }
+
+  async post(url, data) {
+    const response = await timeoutPromise(
+      this.timeout,
+      "Request timed out",
+      fetch(this.baseUrl + url, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+    );
+
+    if (response.status >= 200 && response.status < 300) {
+      return response.json();
+    }
+
+    throw await response.json();
+  }
+}
+
+export default new Api(Constants.manifest.extra.apiUrl, 1000);

@@ -1,15 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  AsyncStorage,
-  StyleSheet,
-  TextInput,
-  View,
-  Button
-} from "react-native";
+import { AsyncStorage, StyleSheet, View, Button } from "react-native";
 
 import Api from "../util/api";
 import Colors from "../constants/Colors";
+import ErrorMessage from "../components/ErrorMessage";
+import TextField from "../components/TextField";
 
 const styles = StyleSheet.create({
   container: {
@@ -17,6 +13,9 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingHorizontal: 15,
     flex: 1
+  },
+  signInButton: {
+    marginVertical: 15
   }
 });
 
@@ -33,7 +32,8 @@ class AuthSignInScreen extends React.Component {
 
   state = {
     email: "",
-    password: ""
+    password: "",
+    error: ""
   };
 
   signInPress = async () => {
@@ -41,40 +41,50 @@ class AuthSignInScreen extends React.Component {
     const { email, password } = this.state;
 
     try {
-      const userToken = (await Api.post("/auth/login", {
+      const userToken = await Api.post("/auth/login", {
         email,
         password
-      })).data;
+      });
 
       await AsyncStorage.setItem("userToken", userToken);
-      Api.defaults.headers.common.Authorization = `Bearer ${userToken}`;
+      Api.setUserToken(userToken);
       navigation.navigate("Main");
     } catch (error) {
-      // console.log(error);
+      if (error && error.message) {
+        this.setState({ error: error.message });
+      } else {
+        this.setState({
+          error: "An unknown error occured while trying to log in."
+        });
+      }
     }
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, error } = this.state;
 
     return (
       <View style={styles.container}>
-        <TextInput
+        {error.length > 0 && <ErrorMessage message={error} />}
+        <TextField
           onChangeText={e => this.setState({ email: e })}
           value={email}
           placeholder="Email Address"
         />
-        <TextInput
+        <TextField
           onChangeText={p => this.setState({ password: p })}
           value={password}
           secureTextEntry
           placeholder="Password"
         />
-        <Button
-          title="Sign In"
-          color={Colors.tintColor}
-          onPress={this.signInPress}
-        />
+        <View style={styles.signInButton}>
+          <Button
+            title="Sign In"
+            color={Colors.tintColor}
+            onPress={this.signInPress}
+            disabled={!email || !password}
+          />
+        </View>
       </View>
     );
   }
