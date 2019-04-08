@@ -25,7 +25,7 @@ function ErrorMessage({ message, style, ...rest }) {
 
 ErrorMessage.defaultProps = {
   message: "",
-  style: styles.container
+  style: {}
 };
 
 ErrorMessage.propTypes = {

@@ -10,6 +10,8 @@ import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import MyBooksScreen from "../screens/MyBooksScreen";
 import MyWishlistScreen from "../screens/MyWishlistScreen";
+import AddBookOptionScreen from "../screens/AddBookOptionScreen";
+import ScanBarcodeScreen from "../screens/ScanBarcodeScreen";
 import ChatScreen from "../screens/ChatScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import Colors from "../constants/Colors";
@@ -35,7 +37,9 @@ HomeStack.navigationOptions = {
 };
 
 const MyBooksStack = createStackNavigator({
-  Links: MyBooksScreen
+  MyBooks: MyBooksScreen,
+  MyBooksAddOptions: AddBookOptionScreen,
+  MyBooksScanBarcode: ScanBarcodeScreen
 });
 
 const MyBooksIcon = ({ tintColor }) => (
