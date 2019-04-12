@@ -17,7 +17,6 @@ import ErrorMessage from "../components/ErrorMessage";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
     backgroundColor: Colors.screenBgColor
   }
 });
@@ -43,7 +42,7 @@ class MyBooksScreen extends React.Component {
   };
 
   loadBooks = async () => {
-    this.setState({ isLoading: true, myBooks: [], error: "" });
+    this.setState({ isLoading: true, error: "" });
 
     try {
       const books = await Api.get("/my-books");
@@ -61,6 +60,7 @@ class MyBooksScreen extends React.Component {
   };
 
   render() {
+    const { navigation } = this.props;
     const { isLoading, myBooks, error } = this.state;
 
     if (isLoading)
@@ -77,7 +77,14 @@ class MyBooksScreen extends React.Component {
         <FlatList
           data={myBooks}
           keyExtractor={item => item._id}
-          renderItem={({ item }) => <BookListRow book={item} />}
+          renderItem={({ item }) => (
+            <BookListRow
+              book={item}
+              onPress={() =>
+                navigation.navigate("MyBooksDetail", { id: item._id })
+              }
+            />
+          )}
         />
       </View>
     );

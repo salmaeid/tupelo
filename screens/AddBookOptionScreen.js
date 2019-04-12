@@ -9,7 +9,6 @@ import ErrorMessage from "../components/ErrorMessage";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
     paddingHorizontal: 15,
     justifyContent: "center",
     backgroundColor: Colors.screenBgColor
@@ -80,7 +79,7 @@ class AddBookOptionScreen extends React.Component {
             }
           />
         </View>
-        <Button title="Search" color={Colors.tintColor} />
+        <Button title="Search" color={Colors.tintColor} onPress={() => {}} />
       </View>
     );
   }

@@ -12,6 +12,7 @@ import MyBooksScreen from "../screens/MyBooksScreen";
 import MyWishlistScreen from "../screens/MyWishlistScreen";
 import AddBookOptionScreen from "../screens/AddBookOptionScreen";
 import ScanBarcodeScreen from "../screens/ScanBarcodeScreen";
+import BookDetailScreen from "../screens/BookDetailScreen";
 import ChatScreen from "../screens/ChatScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import Colors from "../constants/Colors";
@@ -39,7 +40,8 @@ HomeStack.navigationOptions = {
 const MyBooksStack = createStackNavigator({
   MyBooks: MyBooksScreen,
   MyBooksAddOptions: AddBookOptionScreen,
-  MyBooksScanBarcode: ScanBarcodeScreen
+  MyBooksScanBarcode: ScanBarcodeScreen,
+  MyBooksDetail: BookDetailScreen
 });
 
 const MyBooksIcon = ({ tintColor }) => (

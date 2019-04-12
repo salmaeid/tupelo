@@ -60,6 +60,29 @@ class Api {
 
     throw await response.json();
   }
+
+  async delete(url) {
+    const response = await timeoutPromise(
+      this.timeout,
+      "Request timed out",
+      fetch(this.baseUrl + url, {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          Authorization: this.userToken
+            ? `Bearer ${this.userToken}`
+            : undefined,
+          "Content-Type": "application/json"
+        }
+      })
+    );
+
+    if (response.status >= 200 && response.status < 300) {
+      return response.json();
+    }
+
+    throw await response.json();
+  }
 }
 
 export default new Api(Constants.manifest.extra.apiUrl, 1000);

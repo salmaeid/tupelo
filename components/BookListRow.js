@@ -3,8 +3,11 @@ import PropTypes from "prop-types";
 import {
   Text,
   TouchableOpacity,
+  TouchableNativeFeedback,
+  Platform,
   StyleSheet,
   ViewPropTypes,
+  View,
   Image
 } from "react-native";
 
@@ -15,15 +18,19 @@ const styles = StyleSheet.create({
 });
 
 function BookListRow({ book, style, ...rest }) {
+  const Touchable =
+    Platform.OS === "android" ? TouchableNativeFeedback : TouchableOpacity;
   return (
-    <TouchableOpacity style={[styles.container, style]} {...rest}>
-      <Image
-        style={{ width: 35, height: 60 }}
-        source={{ uri: book.thumbnail }}
-      />
-      <Text>{book.title}</Text>
-      <Text>{book.authors.join(", ")}</Text>
-    </TouchableOpacity>
+    <Touchable style={[styles.container, style]} {...rest}>
+      <View>
+        <Image
+          style={{ width: 35, height: 60 }}
+          source={{ uri: book.thumbnail }}
+        />
+        <Text>{book.title}</Text>
+        <Text>{book.authors.join(", ")}</Text>
+      </View>
+    </Touchable>
   );
 }
 
