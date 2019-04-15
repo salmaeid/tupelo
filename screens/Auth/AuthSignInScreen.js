@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { AsyncStorage, StyleSheet, View, Button } from "react-native";
 
-import Api from "../util/api";
-import Colors from "../constants/Colors";
-import ErrorMessage from "../components/ErrorMessage";
-import TextField from "../components/TextField";
+import Api from "../../util/api";
+import Colors from "../../constants/Colors";
+import ErrorMessage from "../../components/ErrorMessage";
+import TextField from "../../components/TextField";
 
 const styles = StyleSheet.create({
   container: {

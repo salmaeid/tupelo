@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { StyleSheet, Button, View, ActivityIndicator } from "react-native";
 
-import Api from "../util/api";
-import Colors from "../constants/Colors";
-import ErrorMessage from "../components/ErrorMessage";
+import Api from "../../util/api";
+import Colors from "../../constants/Colors";
+import ErrorMessage from "../../components/ErrorMessage";
 
 const styles = StyleSheet.create({
   container: {
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class AddBookOptionScreen extends React.Component {
+class AddMyWishlistOptionScreen extends React.Component {
   static navigationOptions = {
     title: "Add Book"
   };
@@ -37,7 +37,7 @@ class AddBookOptionScreen extends React.Component {
     });
 
     try {
-      await Api.post("/my-books", {
+      await Api.post("/my-wishlist", {
         isbn
       });
 
@@ -68,27 +68,35 @@ class AddBookOptionScreen extends React.Component {
     return (
       <View style={styles.container}>
         {error.length > 0 && <ErrorMessage message={error} />}
+        <Button
+          title="Search"
+          color={Colors.tintColor}
+          onPress={() =>
+            navigation.navigate("MyWishlistSearchBookScreen", {
+              onSelected: this.onSelected
+            })
+          }
+        />
         <View style={styles.barcodeButton}>
           <Button
             title="Scan Barcode"
             color={Colors.tintColor}
             onPress={() =>
-              navigation.navigate("MyBooksScanBarcode", {
+              navigation.navigate("MyWishlistScanBarcode", {
                 onSelected: this.onSelected
               })
             }
           />
         </View>
-        <Button title="Search" color={Colors.tintColor} onPress={() => {}} />
       </View>
     );
   }
 }
 
-AddBookOptionScreen.propTypes = {
+AddMyWishlistOptionScreen.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired
   }).isRequired
 };
 
-export default AddBookOptionScreen;
+export default AddMyWishlistOptionScreen;

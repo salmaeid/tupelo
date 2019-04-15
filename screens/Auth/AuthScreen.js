@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button, StyleSheet, Image, View } from "react-native";
 
-import Colors from "../constants/Colors";
+import Colors from "../../constants/Colors";
 
 const styles = StyleSheet.create({
   container: {

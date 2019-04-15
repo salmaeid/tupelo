@@ -7,8 +7,8 @@ import {
   View
 } from "react-native";
 
-import Api from "../util/api";
-import Colors from "../constants/Colors";
+import Api from "../../util/api";
+import Colors from "../../constants/Colors";
 
 const styles = StyleSheet.create({
   container: {

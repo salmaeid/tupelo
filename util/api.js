@@ -1,4 +1,4 @@
-import { Constants } from "expo";
+import { Constants, Location } from "expo";
 
 import timeoutPromise from "./timeout-promise";
 
@@ -11,6 +11,7 @@ class Api {
 
   setUserToken(userToken) {
     this.userToken = userToken;
+    this.updateLocation();
   }
 
   async get(url, data) {
@@ -61,6 +62,30 @@ class Api {
     throw await response.json();
   }
 
+  async put(url, data) {
+    const response = await timeoutPromise(
+      this.timeout,
+      "Request timed out",
+      fetch(this.baseUrl + url, {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          Authorization: this.userToken
+            ? `Bearer ${this.userToken}`
+            : undefined,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+    );
+
+    if (response.status >= 200 && response.status < 300) {
+      return response.json();
+    }
+
+    throw await response.json();
+  }
+
   async delete(url) {
     const response = await timeoutPromise(
       this.timeout,
@@ -82,6 +107,22 @@ class Api {
     }
 
     throw await response.json();
+  }
+
+  async updateLocation() {
+    try {
+      await Location.requestPermissionsAsync();
+      const location = await Location.getCurrentPositionAsync({
+        accuracy: Location.Accuracy.Highest
+      });
+
+      await this.put("/settings/location", [
+        location.coords.longitude,
+        location.coords.latitude
+      ]);
+    } catch (error) {
+      // Do nothing
+    }
   }
 }
 

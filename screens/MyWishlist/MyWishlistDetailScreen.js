@@ -8,10 +8,10 @@ import {
   Alert
 } from "react-native";
 
-import Api from "../util/api";
-import Colors from "../constants/Colors";
-import ErrorMessage from "../components/ErrorMessage";
-import BookDetail from "../components/BookDetail";
+import Api from "../../util/api";
+import Colors from "../../constants/Colors";
+import ErrorMessage from "../../components/ErrorMessage";
+import BookDetail from "../../components/BookDetail";
 
 const styles = StyleSheet.create({
   container: {
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class BookDetailScreen extends React.Component {
+class MyWishlistDetailScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: "Book Info",
@@ -33,7 +33,7 @@ class BookDetailScreen extends React.Component {
           onPress={() =>
             Alert.alert(
               "Remove Book",
-              "Are you sure you want to remove this book from your collection?",
+              "Are you sure you want to remove this book from your wishlist?",
               [
                 {
                   text: "Cancel",
@@ -71,7 +71,7 @@ class BookDetailScreen extends React.Component {
     });
 
     try {
-      const book = await Api.get(`/my-books/${id}`);
+      const book = await Api.get(`/my-wishlist/${id}`);
 
       this.setState({
         book,
@@ -100,7 +100,7 @@ class BookDetailScreen extends React.Component {
     });
 
     try {
-      await Api.delete(`/my-books/${id}`);
+      await Api.delete(`/my-wishlist/${id}`);
 
       navigation.goBack();
     } catch (error) {
@@ -134,10 +134,10 @@ class BookDetailScreen extends React.Component {
   }
 }
 
-BookDetailScreen.propTypes = {
+MyWishlistDetailScreen.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired
   }).isRequired
 };
 
-export default BookDetailScreen;
+export default MyWishlistDetailScreen;

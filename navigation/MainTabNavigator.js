@@ -7,41 +7,25 @@ import {
 } from "react-navigation";
 
 import TabBarIcon from "../components/TabBarIcon";
-import HomeScreen from "../screens/HomeScreen";
-import MyBooksScreen from "../screens/MyBooksScreen";
-import MyWishlistScreen from "../screens/MyWishlistScreen";
-import AddBookOptionScreen from "../screens/AddBookOptionScreen";
+import MyBooksScreen from "../screens/MyBooks/MyBooksScreen";
+import AddMyBookOptionScreen from "../screens/MyBooks/AddMyBookOptionScreen";
+import MyBookDetailScreen from "../screens/MyBooks/MyBookDetailScreen";
+import MyWishlistScreen from "../screens/MyWishlist/MyWishlistScreen";
+import AddMyWishlistOptionScreen from "../screens/MyWishlist/AddMyWishlistOptionScreen";
+import MyWishlistDetailScreen from "../screens/MyWishlist/MyWishlistDetailScreen";
 import ScanBarcodeScreen from "../screens/ScanBarcodeScreen";
-import BookDetailScreen from "../screens/BookDetailScreen";
-import ChatScreen from "../screens/ChatScreen";
+import SearchBookScreen from "../screens/SearchBookScreen";
+import TradeScreen from "../screens/Trades/TradeScreen";
+import TradeDetailScreen from "../screens/Trades/TradeDetailScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import Colors from "../constants/Colors";
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen
-});
-
-const HomeIcon = ({ tintColor }) => (
-  <TabBarIcon
-    tintColor={tintColor}
-    name={Platform.OS === "ios" ? `ios-search"}` : "md-search"}
-  />
-);
-
-HomeIcon.propTypes = {
-  tintColor: PropTypes.string.isRequired
-};
-
-HomeStack.navigationOptions = {
-  tabBarLabel: "Explore",
-  tabBarIcon: HomeIcon
-};
-
 const MyBooksStack = createStackNavigator({
   MyBooks: MyBooksScreen,
-  MyBooksAddOptions: AddBookOptionScreen,
+  MyBooksAddOptions: AddMyBookOptionScreen,
+  MyBooksDetail: MyBookDetailScreen,
   MyBooksScanBarcode: ScanBarcodeScreen,
-  MyBooksDetail: BookDetailScreen
+  MyBooksSearchBookScreen: SearchBookScreen
 });
 
 const MyBooksIcon = ({ tintColor }) => (
@@ -61,7 +45,11 @@ MyBooksStack.navigationOptions = {
 };
 
 const MyWishlistStack = createStackNavigator({
-  Links: MyWishlistScreen
+  MyWishlist: MyWishlistScreen,
+  MyWishlistAddOptions: AddMyWishlistOptionScreen,
+  MyWishlistDetail: MyWishlistDetailScreen,
+  MyWishlistScanBarcode: ScanBarcodeScreen,
+  MyWishlistSearchBookScreen: SearchBookScreen
 });
 
 const MyWishlistIcon = ({ tintColor }) => (
@@ -80,24 +68,25 @@ MyWishlistStack.navigationOptions = {
   tabBarIcon: MyWishlistIcon
 };
 
-const ChatStack = createStackNavigator({
-  Links: ChatScreen
+const TradeStack = createStackNavigator({
+  Trades: TradeScreen,
+  TradeDetail: TradeDetailScreen
 });
 
-const ChatIcon = ({ tintColor }) => (
+const TradeIcon = ({ tintColor }) => (
   <TabBarIcon
     tintColor={tintColor}
-    name={Platform.OS === "ios" ? "ios-mail" : "md-mail"}
+    name={Platform.OS === "ios" ? "ios-repeat" : "md-repeat"}
   />
 );
 
-ChatIcon.propTypes = {
+TradeIcon.propTypes = {
   tintColor: PropTypes.string.isRequired
 };
 
-ChatStack.navigationOptions = {
-  tabBarLabel: "Chat",
-  tabBarIcon: ChatIcon
+TradeStack.navigationOptions = {
+  tabBarLabel: "Trades",
+  tabBarIcon: TradeIcon
 };
 
 const SettingsStack = createStackNavigator({
@@ -122,10 +111,9 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator(
   {
-    HomeStack,
     MyBooksStack,
     MyWishlistStack,
-    ChatStack,
+    TradeStack,
     SettingsStack
   },
   {
