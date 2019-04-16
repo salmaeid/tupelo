@@ -58,13 +58,6 @@ class SearchBookScreen extends React.Component {
     const { navigation } = this.props;
     const { isLoading, books, search, error } = this.state;
 
-    if (isLoading)
-      return (
-        <View style={styles.container}>
-          <ActivityIndicator size="large" color={Colors.tintColor} />
-        </View>
-      );
-
     return (
       <View style={styles.container}>
         {error.length > 0 && <ErrorMessage message={error} />}
@@ -74,19 +67,28 @@ class SearchBookScreen extends React.Component {
           placeholder="Search"
         />
         <Button title="Search" color={Colors.tintColor} onPress={this.search} />
-        <FlatList
-          data={books}
-          keyExtractor={(item, index) => `list-item-${index}`}
-          renderItem={({ item }) => (
-            <BookListRow
-              book={item}
-              onPress={() => {
-                navigation.goBack();
-                navigation.state.params.onSelected(item.isbn13 || item.isbn10);
-              }}
-            />
-          )}
-        />
+        {isLoading && (
+          <View style={styles.container}>
+            <ActivityIndicator size="large" color={Colors.tintColor} />
+          </View>
+        )}
+        {!isLoading && (
+          <FlatList
+            data={books}
+            keyExtractor={(item, index) => `list-item-${index}`}
+            renderItem={({ item }) => (
+              <BookListRow
+                book={item}
+                onPress={() => {
+                  navigation.goBack();
+                  navigation.state.params.onSelected(
+                    item.isbn13 || item.isbn10
+                  );
+                }}
+              />
+            )}
+          />
+        )}
       </View>
     );
   }

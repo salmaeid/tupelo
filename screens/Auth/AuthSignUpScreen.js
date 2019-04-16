@@ -25,16 +25,6 @@ class AuthSignUpScreen extends React.Component {
     title: "Create Account"
   };
 
-  constructor(props) {
-    super(props);
-
-    this.signUpPress = this.signUpPress.bind(this);
-    this.validateEmail = this.validateEmail.bind(this);
-    this.validateDisplayName = this.validateDisplayName.bind(this);
-    this.validatePassword = this.validatePassword.bind(this);
-    this.validateConfirmPassword = this.validateConfirmPassword.bind(this);
-  }
-
   state = {
     email: "",
     emailError: "",

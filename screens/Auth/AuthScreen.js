@@ -29,10 +29,11 @@ class AuthScreen extends React.Component {
   render() {
     const { navigation } = this.props;
 
+    /* eslint-disable global-require */
     return (
       <View style={styles.container}>
         <Image
-          source={{ uri: "https://facebook.github.io/react/logo-og.png" }}
+          source={require("../../assets/images/tupelo.png")}
           style={styles.image}
         />
         <View style={styles.signInButton}>
@@ -49,6 +50,7 @@ class AuthScreen extends React.Component {
         />
       </View>
     );
+    /* eslint-enable global-require */
   }
 }
 
