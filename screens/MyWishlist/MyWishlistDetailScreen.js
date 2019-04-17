@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {
   StyleSheet,
   View,
+  ScrollView,
   ActivityIndicator,
   Button,
   Alert
@@ -126,10 +127,10 @@ class MyWishlistDetailScreen extends React.Component {
       );
 
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         {error.length > 0 && <ErrorMessage message={error} />}
         {book && <BookDetail book={book} />}
-      </View>
+      </ScrollView>
     );
   }
 }

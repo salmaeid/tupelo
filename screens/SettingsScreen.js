@@ -22,7 +22,9 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingHorizontal: 15,
     flex: 1
-  }
+  },
+  radiusPicker: { height: 50 },
+  signOutButton: { marginTop: 15 }
 });
 
 export default class SettingsScreen extends React.Component {
@@ -159,7 +161,7 @@ export default class SettingsScreen extends React.Component {
         <Picker
           prompt="Trade Radius"
           selectedValue={wishlistRadius}
-          style={{ height: 50 }}
+          style={styles.radiusPicker}
           onValueChange={v => this.updateWishlistRadius(v)}
         >
           <Picker.Item label="5 miles" value={5} />
@@ -170,7 +172,7 @@ export default class SettingsScreen extends React.Component {
           <Picker.Item label="40 miles" value={40} />
           <Picker.Item label="50 miles" value={50} />
         </Picker>
-        <View style={{ marginTop: 15 }}>
+        <View style={styles.signOutButton}>
           <Button
             title="Sign Out"
             color={Colors.tintColor}

@@ -18,7 +18,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.screenBgColor
-  }
+  },
+  searchSection: { flexDirection: "row" },
+  searchWrapper: { flex: 1 }
 });
 
 class SearchBookScreen extends React.Component {
@@ -63,8 +65,8 @@ class SearchBookScreen extends React.Component {
     return (
       <View style={styles.container}>
         {error.length > 0 && <ErrorMessage message={error} />}
-        <View style={{ flexDirection: "row" }}>
-          <View style={{ flex: 1 }}>
+        <View style={styles.searchSection}>
+          <View style={styles.searchWrapper}>
             <TextField
               onChangeText={e => this.setState({ search: e })}
               value={search}

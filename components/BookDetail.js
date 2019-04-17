@@ -1,18 +1,65 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Text, ViewPropTypes, View, Image } from "react-native";
+import { Text, ViewPropTypes, View, Image, StyleSheet } from "react-native";
+
+import Colors from "../constants/Colors";
+
+const styles = StyleSheet.create({
+  title: { fontSize: 16, fontWeight: "bold", color: Colors.inactiveTintColor },
+  boldText: { fontWeight: "bold", color: Colors.inactiveTintColor },
+  text: { color: Colors.inactiveTintColor },
+  image: {
+    width: 140,
+    height: 240,
+    alignSelf: "center",
+    marginTop: 10,
+    marginBottom: 10
+  }
+});
 
 function BookDetail({ book, style, ...rest }) {
   return (
     <View style={style} {...rest}>
-      <Image style={{ width: 35, height: 60 }} source={{ uri: book.image }} />
-      <Text>{book.isbn10}</Text>
-      <Text>{book.isbn13}</Text>
-      <Text>{book.title}</Text>
-      <Text>{book.authors.join(", ")}</Text>
-      <Text>{book.publisher}</Text>
-      <Text>{book.pageCount}</Text>
-      <Text>{book.categories.join(", ")}</Text>
+      {book.image && (
+        <Image style={styles.image} source={{ uri: book.image }} />
+      )}
+      <Text style={styles.title}>{book.title}</Text>
+      {book.isbn10 && (
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>ISBN 10: </Text>
+          {book.isbn10}
+        </Text>
+      )}
+      {book.isbn13 && (
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>ISBN 13: </Text>
+          {book.isbn13}
+        </Text>
+      )}
+      {book.authors && (
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>Authors: </Text>
+          {book.authors.join(", ")}
+        </Text>
+      )}
+      {book.publisher && (
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>Publisher: </Text>
+          {book.publisher}
+        </Text>
+      )}
+      {book.pageCount && (
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>Page Count: </Text>
+          {book.pageCount}
+        </Text>
+      )}
+      {book.categories && (
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>Categories: </Text>
+          {book.categories.join(", ")}
+        </Text>
+      )}
     </View>
   );
 }

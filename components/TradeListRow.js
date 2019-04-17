@@ -10,22 +10,36 @@ import {
   View
 } from "react-native";
 
+import Colors from "../constants/Colors";
+
 const styles = StyleSheet.create({
   container: {
     padding: 6
-  }
+  },
+  title: {
+    flex: 1,
+    fontSize: 15,
+    fontWeight: "bold",
+    color: Colors.inactiveTintColor
+  },
+  text: { flex: 1, color: Colors.inactiveTintColor }
 });
 
 function TradeListRow({ trade, style, ...rest }) {
   const Touchable =
     Platform.OS === "android" ? TouchableNativeFeedback : TouchableOpacity;
   return (
-    <Touchable style={[styles.container, style]} {...rest}>
-      <View>
-        <Text>{trade.displayName}</Text>
-        <Text>Has {trade.has.length} wanted books</Text>
-        <Text>Wants {trade.wants.length} of your books</Text>
-        <Text>{trade.distance} miles away</Text>
+    <Touchable {...rest}>
+      <View style={[styles.container, style]}>
+        <Text style={styles.title} numberOfLines={1}>
+          {trade.displayName}
+        </Text>
+        <Text style={styles.text} numberOfLines={1}>
+          Has {trade.has.length} books on your wishlist
+        </Text>
+        <Text style={styles.text} numberOfLines={1}>
+          {trade.distance} miles away
+        </Text>
       </View>
     </Touchable>
   );

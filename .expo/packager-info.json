@@ -1,9 +1,9 @@
 {
   "expoServerNgrokUrl": "https://wq-pj5.anonymous.tupelo.exp.direct",
   "packagerNgrokUrl": "https://packager.wq-pj5.anonymous.tupelo.exp.direct",
-  "ngrokPid": 6848,
+  "ngrokPid": 12696,
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 3340
+  "packagerPid": 13344
 }
