@@ -35,21 +35,23 @@ class SearchBookScreen extends React.Component {
 
   search = async () => {
     const { search } = this.state;
-    this.setState({ isLoading: true, error: "" });
 
-    try {
-      const books = await Api.get(
-        `/books/search/${encodeURIComponent(search)}`
-      );
-      this.setState({ isLoading: false, books, error: "" });
-    } catch (error) {
-      if (error && error.message) {
-        this.setState({ isLoading: false, error: error.message });
-      } else {
-        this.setState({
-          isLoading: false,
-          error: "An unknown error occured while trying to get your books."
-        });
+    if (search.length > 0) {
+      this.setState({ isLoading: true, error: "" });
+      try {
+        const books = await Api.get(
+          `/books/search/${encodeURIComponent(search)}`
+        );
+        this.setState({ isLoading: false, books, error: "" });
+      } catch (error) {
+        if (error && error.message) {
+          this.setState({ isLoading: false, error: error.message });
+        } else {
+          this.setState({
+            isLoading: false,
+            error: "An unknown error occured while trying to get your books."
+          });
+        }
       }
     }
   };
@@ -61,12 +63,22 @@ class SearchBookScreen extends React.Component {
     return (
       <View style={styles.container}>
         {error.length > 0 && <ErrorMessage message={error} />}
-        <TextField
-          onChangeText={e => this.setState({ search: e })}
-          value={search}
-          placeholder="Search"
-        />
-        <Button title="Search" color={Colors.tintColor} onPress={this.search} />
+        <View style={{ flexDirection: "row" }}>
+          <View style={{ flex: 1 }}>
+            <TextField
+              onChangeText={e => this.setState({ search: e })}
+              value={search}
+              placeholder="Search"
+            />
+          </View>
+          <View>
+            <Button
+              title="Search"
+              color={Colors.tintColor}
+              onPress={this.search}
+            />
+          </View>
+        </View>
         {isLoading && (
           <View style={styles.container}>
             <ActivityIndicator size="large" color={Colors.tintColor} />

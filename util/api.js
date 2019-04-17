@@ -126,4 +126,4 @@ class Api {
   }
 }
 
-export default new Api(Constants.manifest.extra.apiUrl, 1000);
+export default new Api(Constants.manifest.extra.apiUrl, 5000);
