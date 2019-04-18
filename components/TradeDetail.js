@@ -35,7 +35,7 @@ function TradeDetail({ trade, style, ...rest }) {
           </Text>
           {trade.email}
         </Text>
-        <Text style={styles.text}>{trade.distance} miles away</Text>
+        <Text style={styles.text}>{trade.distance.toFixed(2)} miles away</Text>
       </View>
       <SectionList
         renderItem={({ item }) => <BookListRow book={item} />}

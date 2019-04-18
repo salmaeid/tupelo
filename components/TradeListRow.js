@@ -38,7 +38,7 @@ function TradeListRow({ trade, style, ...rest }) {
           Has {trade.has.length} books on your wishlist
         </Text>
         <Text style={styles.text} numberOfLines={1}>
-          {trade.distance} miles away
+          {trade.distance.toFixed(2)} miles away
         </Text>
       </View>
     </Touchable>
